@@ -29,11 +29,11 @@ Cada socio tiene:
 - Un número identificador único dentro del gimnasio
 - Un nombre
 
-Cada sala tiene:
+Cada sala tiene: 
 - Un número identificador único dentro del gimnasio
 - Descripción de la sala
 
-El gimnasio:
+El gimnasio: 
 - El sistema debe permitir representar correctamente a cada socio y mostrar su información en formato legible.
 
 ## Requisitos Técnicos
@@ -51,44 +51,44 @@ Debe inicializar ambos atributos.
 - `getNumeroSocio()`
 - `getNombre()`
 - `toString()`  
-  Formato requerido:
-  ```
-      [numeroSocio] nombre
-  ```
+	  Formato requerido:
+	```
+		[numeroSocio] nombre
+	```
 
 >[!important] Haz un commit en este punto
 
 ### Clase `Sala`
-#### Atributos:
-- `codigoSala` (int)
-- `descripcion` (String)
-#### Debe incluir:
-- Constructor
-- Getters
+#### Atributos:  
+- `codigoSala` (int)  
+- `descripcion` (String)  
+#### Debe incluir:  
+- Constructor  
+- Getters  
 - `toString()`
 
 >[!important] Haz un commit en este punto
 
-### Prueba en `Main`
-
-- Crear 2 socios.
-- Crear 2 salas.
-- Mostrar su información por consola.
-
+### Prueba en `Main`  
+  
+- Crear 2 socios.  
+- Crear 2 salas.  
+- Mostrar su información por consola.  
+  
 Sin arrays todavía.
 
 >[!important] Haz un commit en este punto
 
 ### Clase `Gimnasio`
-#### Atributos:
-- `codigo` (String)
-- `nombre` (String)
-- `Socio[] listaSocios` (tamaño fijo, por ejemplo 12)
-- `Sala[] listaSalas` (tamaño fijo, por ejemplo 6)
-- `responsableId` (int, inicializado a -1)
-#### Métodos obligatorios
-(No deben imprimir nada)
-#####  Gestión de socios
+#### Atributos:  
+- `codigo` (String)  
+- `nombre` (String)  
+- `Socio[] listaSocios` (tamaño fijo, por ejemplo 12)  
+- `Sala[] listaSalas` (tamaño fijo, por ejemplo 6)  
+- `responsableId` (int, inicializado a -1)  
+#### Métodos obligatorios  
+(No deben imprimir nada)  
+#####  Gestión de socios  
 ```java
 boolean registrarSocio(Socio s)
 ```
@@ -154,16 +154,16 @@ Debe devolver un texto con:
 - Registrar 3 socios.
 - Añadir 2 salas.
 - Designar responsable.
-- Mostrar el informe.Atributos:
-- `codigo` (String)
-- `nombre` (String)
-- `Socio[] listaSocios` (tamaño fijo, por ejemplo 12)
-- `Sala[] listaSalas` (tamaño fijo, por ejemplo 6)
-- `responsableId` (int, inicializado a -1)
-#### Métodos obligatorios
-(No deben imprimir nada)
-
-### Gestión de socios
+- Mostrar el informe.Atributos:  
+- `codigo` (String)  
+- `nombre` (String)  
+- `Socio[] listaSocios` (tamaño fijo, por ejemplo 12)  
+- `Sala[] listaSalas` (tamaño fijo, por ejemplo 6)  
+- `responsableId` (int, inicializado a -1)  
+#### Métodos obligatorios  
+(No deben imprimir nada)  
+  
+### Gestión de socios  
 
 ```java  
 boolean registrarSocio(Socio s)
@@ -268,7 +268,7 @@ Deberás ser capaz de explicar:
 - Qué ocurriría si se pasan valores incorrectos
 
 ---
-## Extensión voluntaria
+## Extensión voluntaria 
 
 Añadir validaciones:
 - `numeroSocio` debe ser mayor que 0.
