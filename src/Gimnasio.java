@@ -16,6 +16,12 @@ public class Gimnasio {
         this.responsableId = -1;
     }
 
+    /**
+     * Inserta en la primera posición libre al socio dado como parámetro en caso de haberlo
+     * @param socioNuevo
+     * @return true si se pudo false sino
+     */
+
     public boolean registrarSocio(Socio socioNuevo){
         boolean socioRegistradoCorrectamente = true;
         int posicionNuevoSocio;
@@ -36,8 +42,19 @@ public class Gimnasio {
         return socioRegistradoCorrectamente;
     }
 
-    public Socio expulsarSocio(Socio socioAExpulsar){
+    //TODO: SI EL NUMERO DE SOCIO Y EL INDICE EN EL ARRAY DE SOCIOS COINCIDE
 
+    public Socio expulsarSocio(Socio socioAExpulsar){
+        Socio socioEliminado = null;
+        boolean socioFueEliminado;
+        socioFueEliminado = existeSocio(socioAExpulsar.getNumeroSocio());
+
+        if(socioFueEliminado){
+            socioEliminado = this.listaSocios[socioEliminado.getNumeroSocio()];
+            this.listaSocios[socioEliminado.getNumeroSocio()] = null;
+        }
+
+        return socioEliminado;
     }
 
     private boolean existeSocio(int numeroDelSocioBuscado){
@@ -48,6 +65,16 @@ public class Gimnasio {
             }
         }
         return socioEncontrado;
+    }
+
+    public int buscarHuecoLibreSocio(){
+        int huecoLibreSocio = -1;
+        for (int i = 0 ; i < MAX_SOCIOS ; i++){
+            if (this.listaSocios[i] == null){
+                huecoLibreSocio = i;
+            }
+        }
+        return huecoLibreSocio;
     }
 
     public boolean designarResponsable(int numeroDeSocioADesignar){
@@ -64,15 +91,7 @@ public class Gimnasio {
          */
     }
 
-    public int buscarHuecoLibreSocio(){
-        int huecoLibreSocio = -1;
-        for (int i = 0 ; i < MAX_SOCIOS ; i++){
-            if (this.listaSocios[i] == null){
-                huecoLibreSocio = i;
-            }
-        }
-        return huecoLibreSocio;
-    }
+
 
 
 
