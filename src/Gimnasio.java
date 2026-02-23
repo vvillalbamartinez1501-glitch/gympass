@@ -67,7 +67,7 @@ public class Gimnasio {
         return socioEncontrado;
     }
 
-    public int buscarHuecoLibreSocio(){
+    private int buscarHuecoLibreSocio(){
         int huecoLibreSocio = -1;
         for (int i = 0 ; i < MAX_SOCIOS ; i++){
             if (this.listaSocios[i] == null){
@@ -91,6 +91,56 @@ public class Gimnasio {
             this.responsableId = numeroDeSocioAAsignar;
         }
         return responsableAsignado;
+    }
+
+    // Gestión de salas TODO: NO SÉ SI LA GESTIÓN DE SALAS IRÁ EN EL GIMNASIO
+    public boolean incorporarSala(Sala salaAIncorporar){
+        boolean salaIncorporadaCorrectamente = true;
+        int posicionSalaIncorporada = 0;
+
+        if (!existeSala(salaAIncorporar.getCodigoSala())){
+            salaIncorporadaCorrectamente = false;
+        }
+        if (salaIncorporadaCorrectamente){
+            posicionSalaIncorporada= buscarHuecoLibreSala();
+        }
+        if (posicionSalaIncorporada < 0){
+            salaIncorporadaCorrectamente = false;
+        }
+        if (salaIncorporadaCorrectamente){
+            listaSalas[posicionSalaIncorporada] = salaAIncorporar;
+        }
+        return salaIncorporadaCorrectamente;
+    }
+
+    private boolean existeSala(int codigoDeSalaBuscada){
+        boolean salaEncontrada = false;
+        for (int i = 0 ; i < MAX_SALAS && !salaEncontrada  ; i++){
+            if (this.listaSalas[i].getCodigoSala() == codigoDeSalaBuscada){
+                salaEncontrada = true;
+            }
+        }
+        return salaEncontrada;
+    }
+
+    private int buscarHuecoLibreSala(){
+        int huecoLibreSala = -1;
+        for (int i = 0 ; i < MAX_SALAS ; i++){
+            if (this.listaSalas[i] == null){
+                huecoLibreSala = i;
+            }
+        }
+        return huecoLibreSala;
+    }
+
+    private int buscarIndiceDeSalaEnElArray(int codigoDeSalaBuscada){
+        int posicionSalaEncontrada = -1;
+        for (int i = 0 ; i < MAX_SOCIOS && posicionSalaEncontrada == -1  ; i++){
+            if (this.listaSalas[i].getCodigoSala() == codigoDeSalaBuscada){
+                posicionSalaEncontrada = i;
+            }
+        }
+        return posicionSalaEncontrada;
     }
 
     public String obtenerInforme(){
@@ -120,8 +170,10 @@ public class Gimnasio {
         }
 
         i.append("Responsable del gimnasio:");
-        i.append(listaSocios[this.responsableId].getNombre());
-        i.append("\n");
+        if (this.responsableId != -1){
+            i.append(listaSocios[this.responsableId].getNombre());
+            i.append("\n");
+        }
 
         i.append("Salas del gimnasio:");
         i.append(numeroDeSalasActuales);
@@ -185,6 +237,7 @@ public class Gimnasio {
 
         return socioEliminado;
     }
+
 
 
 }
