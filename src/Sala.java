@@ -1,28 +1,25 @@
 public class Sala {
-    private final int NUMERO_SOCIO;
-    private String nombre;
+    private final int codigoSala;
+    private String descripcion;
 
-    // constructor
-
-
-    public Sala(int numeroSocio, String nombre) {
-        this.NUMERO_SOCIO = numeroSocio;
-        this.nombre = nombre;
+    public Sala(int codigoSala, String descripcion) {
+        this.codigoSala = codigoSala;
+        this.descripcion = descripcion;
     }
 
-    // getters
-    public int getNumeroSocio() {
-        return this.NUMERO_SOCIO;
+    public int getCodigoSala() {
+        return codigoSala;
     }
 
-    public String getNombre() {
-        return this.nombre;
+    public String getDescripcion() {
+        return descripcion;
     }
 
     @Override
-    public String toString(){
-        return
-                String.format("[%d] %s", this.NUMERO_SOCIO, this.nombre);
-
+    public String toString() {
+        return "Sala{" +
+                "codigoSala=" + codigoSala +
+                ", descripcion='" + descripcion + '\'' +
+                '}';
     }
 }
