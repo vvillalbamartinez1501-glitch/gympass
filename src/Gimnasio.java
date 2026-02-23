@@ -25,7 +25,7 @@ public class Gimnasio {
             socioRegistradoCorrectamente = false;
         }
         if (socioRegistradoCorrectamente){
-            if(buscarSiSocioRegistrado(socioNuevo) != null){
+            if(!existeSocio(socioNuevo.getNumeroSocio())){
                 socioRegistradoCorrectamente = false;
             }
         }
@@ -34,6 +34,34 @@ public class Gimnasio {
         }
 
         return socioRegistradoCorrectamente;
+    }
+
+    public Socio expulsarSocio(Socio socioAExpulsar){
+
+    }
+
+    private boolean existeSocio(int numeroDelSocioBuscado){
+        boolean socioEncontrado = false;
+        for (int i = 0 ; i < MAX_SOCIOS && !socioEncontrado  ; i++){
+            if (this.listaSocios[i].getNumeroSocio() == numeroDelSocioBuscado){
+                socioEncontrado = true;
+            }
+        }
+        return socioEncontrado;
+    }
+
+    public boolean designarResponsable(int numeroDeSocioADesignar){
+
+    }
+
+    public String obtenerInforme(){
+        /*codigo y nombre
+        n de socios / capacidad de socios
+        responsable actual
+        listado de socios
+        numero de salas ocupadas / capacidad
+        listado de salas
+         */
     }
 
     public int buscarHuecoLibreSocio(){
@@ -46,14 +74,6 @@ public class Gimnasio {
         return huecoLibreSocio;
     }
 
-    public Socio buscarSiSocioRegistrado(Socio socioBuscado){
-        Socio socioEncontrado = null;
-        for (int i = 0 ; i < MAX_SOCIOS && socioEncontrado == null ; i++){
-            if (this.listaSocios[i].getNumeroSocio() == socioBuscado.getNumeroSocio()){
-                socioEncontrado = this.listaSocios[i];
-            }
-        }
-        return socioEncontrado;
-    }
+
 
 }
