@@ -21,7 +21,6 @@ public class Socio {
     @Override
     public String toString(){
         return
-                String.format("[%d] %s", this.numeroSocio, this.nombre);
-
+            String.format("[%d] %s", this.numeroSocio, this.nombre);
     }
 }
