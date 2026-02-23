@@ -90,7 +90,7 @@ Sin arrays todavía.
 (No deben imprimir nada)  
 #####  Gestión de socios  
 ```java
-boolean registrarSocio(Socio s)
+boolean registrarSocio(Socio s);
 ```
 - Inserta en la primera posición libre.
 - No permite números de socio repetidos.
@@ -100,7 +100,7 @@ boolean registrarSocio(Socio s)
 
 
 ```java
-Socio expulsarSocio(int numero)
+Socio expulsarSocio(int numero);
 ```
 - Elimina al socio si existe.
 - Devuelve el objeto eliminado.
@@ -110,7 +110,7 @@ Socio expulsarSocio(int numero)
 
 
 ```java
-boolean existeSocio(int numero)
+boolean existeSocio(int numero);
 ```
 - Indica si pertenece al gimnasio.
 
@@ -118,7 +118,7 @@ boolean existeSocio(int numero)
 
 
 ```java
-boolean designarResponsable(int numeroSocio)
+boolean designarResponsable(int numeroSocio);
 ```
 - Solo válido si el socio pertenece al gimnasio.
 
@@ -127,7 +127,7 @@ boolean designarResponsable(int numeroSocio)
 ### Gestión de salas
 
 ```java
-boolean incorporarSala(Sala sala)
+boolean incorporarSala(Sala sala);
 ```
 - Inserta en primera posición libre.
 - No permite códigos repetidos.
@@ -137,7 +137,7 @@ boolean incorporarSala(Sala sala)
 ### Resumen
 
 ```java
-String obtenerInforme()
+String obtenerInforme();
 ```
 Debe devolver un texto con:
 - Código y nombre
@@ -166,7 +166,7 @@ Debe devolver un texto con:
 ### Gestión de socios  
 
 ```java  
-boolean registrarSocio(Socio s)
+boolean registrarSocio(Socio s);
 ```
 - Inserta en la primera posición libre.
 - No permite números de socio repetidos.
@@ -175,7 +175,7 @@ boolean registrarSocio(Socio s)
 >[!important] Haz un commit en este punto
 
 ```java
-Socio expulsarSocio(int numero)
+Socio expulsarSocio(int numero);
 ```
 - Elimina al socio si existe.
 - Devuelve el objeto eliminado.
@@ -184,14 +184,14 @@ Socio expulsarSocio(int numero)
 >[!important] Haz un commit en este punto
 
 ```java
-boolean existeSocio(int numero)
+boolean existeSocio(int numero);
 ```
 - Indica si pertenece al gimnasio.
 
 >[!important] Haz un commit en este punto
 
 ```java
-boolean designarResponsable(int numeroSocio)
+boolean designarResponsable(int numeroSocio);
 ```
 - Solo válido si el socio pertenece al gimnasio.
 
@@ -199,7 +199,7 @@ boolean designarResponsable(int numeroSocio)
 
 ### Gestión de salas
 ```java
-boolean incorporarSala(Sala sala)
+boolean incorporarSala(Sala sala);
 ```
 - Inserta en primera posición libre.
 - No permite códigos repetidos.
@@ -208,7 +208,7 @@ boolean incorporarSala(Sala sala)
 
 ### Resumen
 ```java
-String obtenerInforme()
+String obtenerInforme();
 ```
 Debe devolver un texto con:
 - Código y nombre
