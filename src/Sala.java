@@ -17,9 +17,7 @@ public class Sala {
 
     @Override
     public String toString() {
-        return "Sala{" +
-                "codigoSala=" + codigoSala +
-                ", descripcion='" + descripcion + '\'' +
-                '}';
+        return
+                String.format("[%d] %s", this.codigoSala, this.descripcion);
     }
 }
