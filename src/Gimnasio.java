@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Gimnasio {
     private String codigo;
     private String nombre;
@@ -8,17 +10,17 @@ public class Gimnasio {
     private final int MAX_SOCIOS = 12;
     private final int MAX_SALAS = 6;
 
-    public Gimnasio(String codigo, String nombre){
+    public Gimnasio(String codigo, String nombre) {
         this.codigo = codigo;
         this.nombre = nombre;
-        this.listaSocios = new Socio[MAX_SOCIOS];
-        this.listaSalas = new Sala[MAX_SALAS];
+        this.listaSocios = new Socio[this.MAX_SOCIOS];
+        this.listaSalas = new Sala[this.MAX_SALAS];
         this.responsableId = -1;
     }
 
     /**
      * Inserta en la primera posición libre al socio dado como parámetro en caso de haberlo
-     * @param socioNuevo
+     * @param socioNuevo  el socio a introducir
      * @return true si se pudo false sino
      */
 
@@ -31,7 +33,7 @@ public class Gimnasio {
             socioRegistradoCorrectamente = false;
         }
         if (socioRegistradoCorrectamente){
-            if(!existeSocio(socioNuevo.getNumeroSocio())){
+            if(existeSocio(socioNuevo.getNumeroSocio())){
                 socioRegistradoCorrectamente = false;
             }
         }
@@ -44,7 +46,7 @@ public class Gimnasio {
 
     //TODO: SI EL NUMERO DE SOCIO Y EL INDICE EN EL ARRAY DE SOCIOS COINCIDE O NO
 
-    public Socio expulsarSocio(Socio socioAExpulsar){
+    public Socio expulsarSocio_nsocioeindicearray_coinciden(Socio socioAExpulsar){
         Socio socioEliminado = null;
         boolean socioFueEliminado;
         socioFueEliminado = existeSocio(socioAExpulsar.getNumeroSocio());
@@ -59,8 +61,8 @@ public class Gimnasio {
 
     private boolean existeSocio(int numeroDelSocioBuscado){
         boolean socioEncontrado = false;
-        for (int i = 0 ; i < MAX_SOCIOS && !socioEncontrado  ; i++){
-            if (this.listaSocios[i].getNumeroSocio() == numeroDelSocioBuscado){
+        for (int i = 0 ; i < this.MAX_SOCIOS && !socioEncontrado  ; i++){
+            if (this.listaSocios[i] != null && this.listaSocios[i].getNumeroSocio() == numeroDelSocioBuscado){
                 socioEncontrado = true;
             }
         }
@@ -69,7 +71,7 @@ public class Gimnasio {
 
     private int buscarHuecoLibreSocio(){
         int huecoLibreSocio = -1;
-        for (int i = 0 ; i < MAX_SOCIOS ; i++){
+        for (int i = 0 ; i < MAX_SOCIOS && huecoLibreSocio == -1; i++){
             if (this.listaSocios[i] == null){
                 huecoLibreSocio = i;
             }
@@ -88,7 +90,7 @@ public class Gimnasio {
             responsableAsignado = false;
         }
         if (responsableAsignado){
-            this.responsableId = numeroDeSocioAAsignar;
+            this.responsableId = (numeroDeSocioAAsignar);
         }
         return responsableAsignado;
     }
@@ -96,9 +98,9 @@ public class Gimnasio {
     // Gestión de salas TODO: NO SÉ SI LA GESTIÓN DE SALAS IRÁ EN EL GIMNASIO
     public boolean incorporarSala(Sala salaAIncorporar){
         boolean salaIncorporadaCorrectamente = true;
-        int posicionSalaIncorporada = 0;
+        int posicionSalaIncorporada = -1;
 
-        if (!existeSala(salaAIncorporar.getCodigoSala())){
+        if (existeSala(salaAIncorporar.getCodigoSala())){
             salaIncorporadaCorrectamente = false;
         }
         if (salaIncorporadaCorrectamente){
@@ -116,7 +118,7 @@ public class Gimnasio {
     private boolean existeSala(int codigoDeSalaBuscada){
         boolean salaEncontrada = false;
         for (int i = 0 ; i < MAX_SALAS && !salaEncontrada  ; i++){
-            if (this.listaSalas[i].getCodigoSala() == codigoDeSalaBuscada){
+            if (this.listaSalas[i] != null &&  this.listaSalas[i].getCodigoSala() == codigoDeSalaBuscada){
                 salaEncontrada = true;
             }
         }
@@ -125,7 +127,7 @@ public class Gimnasio {
 
     private int buscarHuecoLibreSala(){
         int huecoLibreSala = -1;
-        for (int i = 0 ; i < MAX_SALAS ; i++){
+        for (int i = 0 ; i < MAX_SALAS && huecoLibreSala == -1 ; i++){
             if (this.listaSalas[i] == null){
                 huecoLibreSala = i;
             }
@@ -135,8 +137,8 @@ public class Gimnasio {
 
     private int buscarIndiceDeSalaEnElArray(int codigoDeSalaBuscada){
         int posicionSalaEncontrada = -1;
-        for (int i = 0 ; i < MAX_SOCIOS && posicionSalaEncontrada == -1  ; i++){
-            if (this.listaSalas[i].getCodigoSala() == codigoDeSalaBuscada){
+        for (int i = 0 ; i < MAX_SALAS && posicionSalaEncontrada == -1  ; i++){
+            if (this.listaSalas[i] != null && this.listaSalas[i].getCodigoSala() == codigoDeSalaBuscada){
                 posicionSalaEncontrada = i;
             }
         }
@@ -144,51 +146,60 @@ public class Gimnasio {
     }
 
     public String obtenerInforme(){
-        StringBuilder i = new StringBuilder("Informe completo:");
+        StringBuilder informe = new StringBuilder("Informe completo:");
         int numeroDeSociosActuales;
         int numeroDeSalasActuales;
 
         numeroDeSociosActuales = contarNumeroDeSocios();
         numeroDeSalasActuales = contarNumeroDeSalas();
 
-        i.append(this.codigo);
-        i.append(" - ");
-        i.append(this.nombre);
-        i.append("\n");
+        informe.append("\n");
+        informe.append(this.codigo);
+        informe.append(" - ");
+        informe.append(this.nombre);
+        informe.append("\n");
 
-        i.append("Socios");
-        i.append(numeroDeSociosActuales);
-        i.append("/");
-        i.append(this.MAX_SOCIOS);
-        i.append("\n");
-        i.append("Listado de socios:");
+        informe.append("Socios: ");
+        informe.append(numeroDeSociosActuales);
+        informe.append("/");
+        informe.append(this.MAX_SOCIOS);
+        informe.append("\n");
+
+        informe.append("Listado de socios: ");
+        informe.append("\n");
         for (int p = 0 ; p < MAX_SOCIOS ; p++){
             if (listaSocios[p] != null){
-                i.append(listaSocios[p].toString());
-                i.append("\n");
+                informe.append(listaSocios[p].toString());
+                informe.append("\n");
             }
         }
 
-        i.append("Responsable del gimnasio:");
-        if (this.responsableId != -1){
-            i.append(listaSocios[this.responsableId].getNombre());
-            i.append("\n");
-        }
+        informe.append("Responsable del gimnasio:");
 
-        i.append("Salas del gimnasio:");
-        i.append(numeroDeSalasActuales);
-        i.append("/");
-        i.append(this.MAX_SALAS);
-        i.append("\n");
-        i.append("Listado de salas:");
+        if (this.responsableId == -1){
+            informe.append("No hay responsable asignado a este gimnasio");
+        }else{
+            informe.append(listaSocios[buscarIndiceDeSalaEnElArray(this.responsableId)].getNombre());
+
+        }
+        informe.append("\n");
+
+
+        informe.append("Salas del gimnasio:");
+        informe.append(numeroDeSalasActuales);
+        informe.append("/");
+        informe.append(this.MAX_SALAS);
+        informe.append("\n");
+        informe.append("Listado de salas:");
+        informe.append("\n");
         for (int p = 0 ; p < MAX_SALAS ; p++){
             if (listaSalas[p] != null){
-                i.append(listaSalas[p].toString());
-                i.append("\n");
+                informe.append(listaSalas[p].toString());
+                informe.append("\n");
             }
         }
 
-        return i.toString();
+        return informe.toString();
     }
 
     private int contarNumeroDeSocios(){
@@ -216,21 +227,21 @@ public class Gimnasio {
     private int buscarIndiceDelSocioEnElArray(int numeroDelSocioBuscado){
         int posicionSocioEncontrado = -1;
         for (int i = 0 ; i < MAX_SOCIOS && posicionSocioEncontrado == -1  ; i++){
-            if (this.listaSocios[i].getNumeroSocio() == numeroDelSocioBuscado){
+            if (this.listaSocios[i] != null &&this.listaSocios[i].getNumeroSocio() == numeroDelSocioBuscado){
                 posicionSocioEncontrado = i;
             }
         }
         return posicionSocioEncontrado;
     }
 
-    public Socio expulsarSocio_nsocioeindicenocoincidentes(Socio socioAExpulsar){
+    public Socio expulsarSocio(int numeroSocioAExpulsar){
         Socio socioEliminado = null;
         boolean socioFueEliminado;
         int posicionSocioAEliminar;
-        socioFueEliminado = existeSocio(socioAExpulsar.getNumeroSocio());
+        socioFueEliminado = existeSocio(numeroSocioAExpulsar);
 
         if(socioFueEliminado){
-            posicionSocioAEliminar = buscarIndiceDelSocioEnElArray(socioAExpulsar.getNumeroSocio());
+            posicionSocioAEliminar = buscarIndiceDelSocioEnElArray(numeroSocioAExpulsar);
             socioEliminado = this.listaSocios[posicionSocioAEliminar];
             this.listaSocios[posicionSocioAEliminar] = null;
         }
@@ -238,6 +249,16 @@ public class Gimnasio {
         return socioEliminado;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "Gimnasio{" +
+                "codigo='" + codigo + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", listaSocios=" + Arrays.toString(listaSocios) +
+                ", listaSalas=" + Arrays.toString(listaSalas) +
+                ", responsableId=" + responsableId +
+                ", MAX_SOCIOS=" + MAX_SOCIOS +
+                ", MAX_SALAS=" + MAX_SALAS +
+                '}';
+    }
 }
