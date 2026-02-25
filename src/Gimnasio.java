@@ -1,7 +1,7 @@
 import java.util.Arrays;
 
 public class Gimnasio {
-    private String codigo;
+    private final String codigo;
     private String nombre;
     private Socio[] listaSocios;
     private Sala[] listaSalas;
