@@ -15,6 +15,11 @@ public class Sala {
         return descripcion;
     }
 
+    /**
+     * Informe en versión toString
+     * @return el informe
+     */
+
     @Override
     public String toString() {
         return
